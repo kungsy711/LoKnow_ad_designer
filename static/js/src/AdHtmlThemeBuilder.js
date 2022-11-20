@@ -287,7 +287,7 @@ let AdHtmlThemeBuilder = Vue.extend({
                             label="Theme Preview"
                             />
                             <div class="col-auto p-0 pt-4 mt-2 pl-2">
-                                <button type="button" class="btn btn-primary" @click="refreshItems()">Refresh</button>
+                                <button type="button" class="btn btn-primary" @click="refreshItems()" :disabled="isLoadingAd">Refresh</button>
                             </div>
                         </div>
                         <div class="row align-self-center position-relative">
