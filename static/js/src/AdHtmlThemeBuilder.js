@@ -292,6 +292,7 @@ let AdHtmlThemeBuilder = Vue.extend({
                         </div>
                         <div class="row align-self-center position-relative">
                             <iframe 
+                            :class="showingFirstIframe ? 'show' : 'hide'"
                             class="ad-iframe my-2 position-absolute"
                             v-bind:width="width"
                             v-bind:height="height"
