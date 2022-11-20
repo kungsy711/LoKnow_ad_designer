@@ -119,6 +119,40 @@ let AdHtmlThemeBuilder = Vue.extend({
             })
         },
 
+        // update the display of iframe
+        updateIframeDisplay(targetPreviewUrlName, newValForTarget, anotherPreviewUrlName){
+            // prevent multiple refresh before setTimeout done
+            // if a timeout is running already, cancel the old one
+            if(this.clearOldIframeTimeoutFunction) {
+                clearTimeout(this.clearOldIframeTimeoutFunction);
+                // reset varibale to null
+                this.clearOldIframeTimeoutFunction = null; 
+            }
+
+            this[targetPreviewUrlName] = newValForTarget;
+            
+            // check if the non target preview url is not empty
+            if(this[anotherPreviewUrlName]) {
+                // delay update to have approximate wait for content to load and keep old preview
+                this.clearOldIframeTimeoutFunction = setTimeout(function(){
+                    this.displayIframe();
+                    this.isLoadingAd = false
+                    // reset timeout to null as finished timeout will still have value
+                    this.clearOldIframeTimeoutFunction = null; 
+
+                    // make sure the new iframe is shown before clearing url to prevent few sec blank
+                    setTimeout(()=>{this.clearPreviewUrlValue(anotherPreviewUrlName);}, 1000);
+                }.bind(this), this.timeout);
+            }
+        },        
+        // trigger transition to new preview iframe
+        displayIframe() {
+            this.showingFirstIframe = !this.showingFirstIframe
+        },
+        // reset any previewURL that has value to clear hidden iframe to save resources
+        clearPreviewUrlValue(previewUrlName) {
+            this[previewUrlName] = ""
+        },
     },
 
     watch: {
