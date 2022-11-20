@@ -1687,3 +1687,15 @@ tr.hide-table-padding td {
     line-height: 1.5;
     margin-bottom: .25em
 }
+
+/* loading overlay in 'AdHtmlThemeBuilder' for ad preview iframe */
+.ad-overlay{
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.5);
+    transition: 1s;
+    z-index: 2;
+}
+
+.ad-iframe{
+    transition: 2s;
+    z-index: 1;
+}
