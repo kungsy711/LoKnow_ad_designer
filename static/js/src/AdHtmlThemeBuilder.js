@@ -14,7 +14,7 @@ let AdHtmlThemeBuilder = Vue.extend({
             secondPreviewURL: '',
             urlReady: false,
             _width: null,
-            timeout: 3000,
+            timeout: 5000,
             showingFirstIframe: false,
             isLoadingAd: false,
             clearOldIframeTimeoutFunction: null
