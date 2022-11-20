@@ -16,6 +16,8 @@ let AdHtmlThemeBuilder = Vue.extend({
             _width: null,
             timeout: 3000,
             showingFirstIframe: false,
+            isLoadingAd: false,
+            clearOldIframeTimeoutFunction: null
         }
     },
 
@@ -39,6 +41,7 @@ let AdHtmlThemeBuilder = Vue.extend({
         this.showingFirstIframe = true;
         this.previewURL = this.presetPreviewURL;
         this.urlReady = true
+        this.isLoadingAd = false
     },
 
     methods: {
@@ -78,6 +81,7 @@ let AdHtmlThemeBuilder = Vue.extend({
         refreshItems() {
             // little cheeky way of refreshing the preview url so it reloads the iframe
             this.store.refreshItemsetImage();
+            this.isLoadingAd = true
         },
 
         showAdvanced() {
