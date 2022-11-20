@@ -118,7 +118,20 @@ let AdHtmlThemeBuilder = Vue.extend({
                 console.log(response)
             })
         },
+        // update preview iframe
+        updatePreviewIframe(newVal, oldVal) {
+            // trigger loading animation
+            if(!this.isLoadingAd) this.isLoadingAd = true 
 
+            if(this.showingFirstIframe) 
+            { 
+                // if the first iframe is showing, assign newVal to secondPreviewURL 
+                this.updateIframeDisplay("secondPreviewURL", newVal, "previewURL");
+            }else{
+                // otherwise we will show first iframe by assigning newVal to previewURL
+                this.updateIframeDisplay("previewURL", newVal, "secondPreviewURL");
+            }
+        },
         // update the display of iframe
         updateIframeDisplay(targetPreviewUrlName, newValForTarget, anotherPreviewUrlName){
             // prevent multiple refresh before setTimeout done
@@ -160,7 +173,7 @@ let AdHtmlThemeBuilder = Vue.extend({
             this.getSizes();
         },
         presetPreviewURL: _.debounce(function(newVal, oldVal) {
-            this.previewURL = newVal;
+            this.updatePreviewIframe(newVal, oldVal);
         }, 1000),
         width: _.debounce(function (newWidth, oldWidth) {
             this.width = newWidth
