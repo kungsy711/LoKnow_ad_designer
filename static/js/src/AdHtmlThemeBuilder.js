@@ -247,6 +247,22 @@ let AdHtmlThemeBuilder = Vue.extend({
                             scrolling="no"
                             frameborder="0">
                             </iframe>
+                            <iframe 
+                            :class="!showingFirstIframe ? 'show' : 'hide'"
+                            class="ad-iframe my-2 position-absolute"
+                            v-bind:width="width"
+                            v-bind:height="height"
+                            v-bind:src="secondPreviewURL"
+                            scrolling="no"
+                            frameborder="0">
+                            </iframe>
+                            <div 
+                            :class="isLoadingAd ? 'show' : 'hide'"
+                            class="ad-overlay my-2 position-absolute"
+                            :style="'width: '+width + 'px; height: '+height + 'px'"
+                            >
+                                <div class="loading w-100 h-100"><div>
+                            </div>
                         </div>
                     </div>
                 </div>
