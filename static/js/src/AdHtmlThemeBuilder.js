@@ -239,8 +239,9 @@ let AdHtmlThemeBuilder = Vue.extend({
                                 <button type="button" class="btn btn-primary" @click="refreshItems()">Refresh</button>
                             </div>
                         </div>
-                        <div class="row align-self-center ">
-                            <iframe class="my-2"
+                        <div class="row align-self-center position-relative">
+                            <iframe 
+                            class="ad-iframe my-2 position-absolute"
                             v-bind:width="width"
                             v-bind:height="height"
                             v-bind:src="previewURL"
